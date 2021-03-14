@@ -1,0 +1,38 @@
+<script>
+`use strict`
+console.log(this);
+//window
+
+function func1(){
+    console.log(this);
+    //window
+    //undefined, when use strict
+}
+
+func1();
+
+//오브젝트의 함수 실행하기
+var obj1 = {func1:function(){console.log(this)}}
+obj1.func1();
+//{func1:f}
+//바로 상위 오브젝트를 지시하게 됨, 담고 있는 object
+
+var obj1 = {data:{func2:function(){console.log(this)}}}
+obj1.func2();
+//{func2:f}
+
+// var obj1 = {data:{func2:aaa(){console.log(this)}}}
+// obj1.func2();
+// syntax err 된다는데?
+
+var obj1 = {data:{func3:()=>{console.log(this)}}}
+obj1.func3();
+//window
+//arrow function은 상위 this 가져옴
+
+
+// js 전체코드는 {window} 에 저장, 전역global object
+// func() 실행결과 = window.func()
+
+// 담고 있는 오브젝트 = this
+</script>
