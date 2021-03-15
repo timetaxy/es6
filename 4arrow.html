@@ -1,0 +1,50 @@
+<div></div>
+<button id="button">btn</button>
+<script>
+// 함수 사용 이유
+//1.코드를 기능으로 묶을 때 2.입출력 기계를 만들고 싶을 때
+
+//함수 문법
+    function func1(){
+
+    }
+    
+    var func1 = function(){
+
+    }
+
+    var func1 = ()=>{
+
+    }
+//장점
+//직관적 입출력기계
+//파람1개는 소괄호 생략
+//한줄이면 중괄호 생략, return 생략
+
+
+[1,2,3].forEach(function(a){
+    console.log(a)
+})
+// = 
+[1,2,3].forEach(a=>
+    console.log(a)
+)
+
+document.getElementById('a1').addEventListener('click',e=>{
+    console.log(this.currentTarget);
+    //err
+    //arrow function 사용시 this = window 이므로
+
+    console.log(e.currentTarget);
+    //e.currentTarget 필요시 arrow function 일때는 직접 지시
+})
+
+var obj2 = {
+    func1:()=>{return this}
+}
+obj2.func1();
+//window
+
+
+
+</script>
