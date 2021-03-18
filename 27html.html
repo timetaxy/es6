@@ -1,0 +1,37 @@
+<body>
+    <custom-input name="param"></custom-input>
+    <script>
+//브라우저의 기본 기능, 자바스크립트로 표현할 뿐
+// 냉장고 = 브라우저, 컴포넌트 / 자바스크립트 = 망치, 드라이버
+//웹 컴포넌트 html 모듈화
+
+//html은 클래스형태로
+class Cls1 extends HTMLElement {
+    connectedCallback() {
+        //만든 태그가 html에 장착될 때 실행할 코드
+        let name = this.getAttribute('name') //펑션에서도 성립? args 못 받을 때? => No
+        this.innerHTML = `<label>${name} test input</label>`;
+        //this : 인스턴스, 새로생성될 오브젝트
+
+        //속도가 10배 더 빠름
+        let var1 = document.createElement('<label>test input2</label>')
+        this.appendChild(var1)
+
+        //함수 문법
+        //재사용 가능성
+    }
+
+    //react, vue 특징, props(attribute) 변경되면 html 자동 재렌더링 됨
+    //이런 라이브러리도 있음
+static get observedAttributes(){
+    return ['name'] //name 어트리뷰트 변경 감시
+}
+attributeChangedCallback(){
+    //변경시 실행됨
+    console.log(this.getAttribute('name'))
+}
+
+}
+customElements.define('custom-input', Cls1);
+//<custom-input></custom-input> 사용
+</script></body>

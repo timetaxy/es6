@@ -1,0 +1,47 @@
+// shadow dom 
+// html 안에 html 숨기기
+// 크롬 세팅 show user agent shadow DOM
+// 예-div 여러개 합쳐서 만든 기능에서 html 태그 내부에 숨겨둠
+
+//shadow root 안에 태그를 숨김
+//웹 컴포넌트 문법과 조합시 모듈화 가능
+
+<body>
+    
+    <div id="start"></div>
+    <script>
+        document.querySelector('#start').attachShadow({mode:'open'})
+        document.querySelector('#start').shadowRoot.innerHTML='<p>hidden tag </p>'
+
+        //클래스 extends HTMLElement 컴포넌트에서 스타일 삽입시 서로 충돌, 오염 가능성
+//단지 태그만 숨겼기 때문에
+//하지만 shadowdom은 별도의 네임스페이스, 외부영향 없음 (밖에서 inherit으로 영향을 줄 수는 있음)
+//진정한 모듈화
+
+        class Cls1 extends HTMLElement {
+    connectedCallback() {
+this.attachShadow({mode:'open'})
+this.shadowRoot.innerHTML = `<label>test input2</label> <style>label {color:red}</style>`
+//=>
+this.shadowRoot.append(template1.content.cloneNode(true));
+//이벤트리스너 부착 => 이 것도 클래스 안에 함수로 뺄 수 있다
+let el = this.shadowRoot.querySelector('label');
+        el.addEventListener('click', function(){
+          console.log('클릭함')
+        })
+
+    }}
+    customElements.define('custom-input', Cls1);
+    </script>
+
+//임시 html 보관함 렌더링 되지 않음
+//라이브러리 Lit, Stencil은 props, state도 지원
+<template id="template1">
+    <label>이메일을 입력하쇼</label><input>
+    <style>label { color :red }</style>
+  </template>
+
+</body>
+
+
+
