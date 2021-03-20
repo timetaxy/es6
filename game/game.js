@@ -45,6 +45,55 @@ class Cactus {
     }
 }
 
+var timer = 0;
+var cactuses = [];
+var animate;
+var jumpTimer = 0;
+
+function timeStream() {
+    animate = requestAnimationFrame(timeStream);
+
+    //canvas reset
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    //60fps
+    if (timer % 60 == 0) {
+        var cactus = new Cactus();
+        cactuses.push(cactus);
+    }
+    timer++;
+
+    cactuses.forEach((a, i, object) => {
+        if (a.x < 0) {
+            object.splice(i, 1);
+        }
+    });
+
+
+
+    cactuses.forEach((a) => {
+        a.x -= 2;
+        a.draw();
+        isCollison(dino, a);
+    });
+
+    if (isJumping == true) {
+        dino.jump();
+        jumpTimer++;
+    } else if (isJumping == false) {
+        jumpTimer = 0;
+        dino.fall();
+    }
+
+    if (jumpTimer > 100) {
+        isJumping = false;
+    }
+
+
+    dino.draw();
+
+
+}
 
 
 
