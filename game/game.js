@@ -95,7 +95,24 @@ function timeStream() {
 
 }
 
-
-
-
 var cactus = new Cactus();
+timeStream();
+
+function isCollison(dino, cactus) {
+
+    var stateX = cactus.x - (dino.x + dino.width);
+    var stateY = cactus.y - (dino.y + dino.height);
+
+    if (stateX < 0 && stateY < 0) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        cancelAnimationFrame(animate);
+    }
+}
+
+var isJumping = false;
+
+document.addEventListener('keydown', function (e) {
+    if (e.code === 'Space') {
+        isJumping = true;
+    }
+});
