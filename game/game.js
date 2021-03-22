@@ -8,9 +8,6 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth - 100;
-canvas.height = window.innerHeight - 100;
-
 var dino = {
     x: 10,
     y: 200,
@@ -30,6 +27,11 @@ var dino = {
     }
 };
 
+
+// var img1 = new Image();
+// img1.src = 'cactus.png';
+
+
 class Cactus {
     constructor() {
         this.x = 600;
@@ -44,6 +46,8 @@ class Cactus {
 
     }
 }
+
+
 
 var timer = 0;
 var cactuses = [];
@@ -95,7 +99,11 @@ function timeStream() {
 
 }
 
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 var cactus = new Cactus();
+
 timeStream();
 
 function isCollison(dino, cactus) {
@@ -111,6 +119,7 @@ function isCollison(dino, cactus) {
 
 var isJumping = false;
 
+//스페이스바 누르면 
 document.addEventListener('keydown', function (e) {
     if (e.code === 'Space') {
         isJumping = true;
