@@ -47,8 +47,6 @@ class Cactus {
     }
 }
 
-
-
 var timer = 0;
 var cactuses = [];
 var animate;
