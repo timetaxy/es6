@@ -5,6 +5,9 @@
 // 2. 1초에 60번 코드실행(프레임마다 코드실행) 브라우저 기본 함수
 // 3.collision check 유닛두개 충돌하는지 안하는지 검사
 
+//todo :
+// score, running animation, random object, background
+
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
@@ -16,6 +19,7 @@ var dino = {
     draw() {
         ctx.fillStyle = 'green';
         ctx.fillRect(this.x, this.y, this.width, this.height);
+        // ctx.drawImage(img2, this.x, this.y);
     },
     jump() {
         this.y -= 1;
@@ -30,8 +34,8 @@ var dino = {
 
 // var img1 = new Image();
 // img1.src = 'cactus.png';
-
-
+// var img2 = new Image();
+// img2.src = 'dino.png';
 class Cactus {
     constructor() {
         this.x = 600;
@@ -41,8 +45,8 @@ class Cactus {
     }
     draw() {
         ctx.fillStyle = 'red';
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(img1, this.x, this.y);
+        ctx.fillRect(this.x, this.y, this.width, this.height); //hit box
+        // ctx.drawImage(img1, this.x, this.y);
 
     }
 }
